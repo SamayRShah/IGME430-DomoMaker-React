@@ -1,0 +1,12 @@
+{
+  "ignorePatterns": ["hosted/*"],
+  "env": { "browser": true },
+  "extends": ["airbnb/base"],
+  "rules": {
+    "no-underscore-dangle": "off",
+    "no-plusplus": "off",
+    "import/extensions": "off",
+    "linebreak-style": ["error", "windows"],
+    "no-console": "off"
+  }
+}
