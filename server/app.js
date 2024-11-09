@@ -19,12 +19,15 @@ const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
 // connect to mongo
 const dbURI = process.env.MONGODB_URI;
-mongoose.connect(dbURI).then((instance) => {
-  console.log(`Connected to mongo instance: ${instance.version}`);
-}).catch((err) => {
-  console.log('Could not connect to database');
-  throw err;
-});
+mongoose
+  .connect(dbURI)
+  .then((instance) => {
+    console.log(`Connected to mongo instance: ${instance.version}`);
+  })
+  .catch((err) => {
+    console.log('Could not connect to database');
+    throw err;
+  });
 
 // connect to redis cloud
 const redisClient = redis.createClient({ url: process.env.REDISCLOUD_URL });
@@ -40,13 +43,15 @@ redisClient.connect().then(() => {
   app.use(compression());
   app.use(express.json());
 
-  app.use(session({
-    key: 'sessionid',
-    store: new RedisStore({ client: redisClient }),
-    secret: 'Domo Arigato',
-    resave: false,
-    saveUninitialized: false,
-  }));
+  app.use(
+    session({
+      key: 'sessionid',
+      store: new RedisStore({ client: redisClient }),
+      secret: 'Domo Arigato',
+      resave: false,
+      saveUninitialized: false,
+    }),
+  );
 
   app.engine('handlebars', expressHandlebars.engine({ defaultLayout: '' }));
   app.set('view engine', 'handlebars');
@@ -55,7 +60,9 @@ redisClient.connect().then(() => {
   router(app);
 
   app.listen(port, (err) => {
-    if (err) { throw err; }
+    if (err) {
+      throw err;
+    }
     console.log(`Listening on port: ${port}`);
   });
 });

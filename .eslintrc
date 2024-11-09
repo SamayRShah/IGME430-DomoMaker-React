@@ -1,12 +1,13 @@
 {
   "ignorePatterns": ["hosted/*"],
   "env": { "browser": true },
-  "extends": ["airbnb/base"],
+  "extends": ["airbnb/base", "plugin:react/recommended"],
   "rules": {
     "no-underscore-dangle": "off",
     "no-plusplus": "off",
     "import/extensions": "off",
     "linebreak-style": ["error", "windows"],
-    "no-console": "off"
+    "no-console": "off",
+    "react/prop-types": "off"
   }
 }
