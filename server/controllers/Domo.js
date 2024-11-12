@@ -54,15 +54,15 @@ const updateDomo = async (req, res) => {
     if (req.body.name) domoUpdates.name = req.body.name;
     if (req.body.age) domoUpdates.age = req.body.age;
     if (req.body.level) domoUpdates.level = req.body.level;
-    const updatedDomo = prevDomo;
-    Object.assign(updatedDomo, domoUpdates);
+    const oldDomo = prevDomo.toObject();
+    const updatedDomo = Object.assign(prevDomo, domoUpdates);
     await updatedDomo.save();
 
     res.status(201).json({
       prev: {
-        name: prevDomo.name,
-        age: prevDomo.age,
-        level: prevDomo.level,
+        name: oldDomo.name,
+        age: oldDomo.age,
+        level: oldDomo.level,
       },
       new: {
         name: updatedDomo.name,
