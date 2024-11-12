@@ -4,6 +4,15 @@
 */
 const handleError = (message) => {
   document.getElementById('errorMessage').textContent = message;
+  document.getElementById('domoMessage').classList.remove('msg');
+  document.getElementById('domoMessage').classList.add('err');
+  document.getElementById('domoMessage').classList.remove('hidden');
+};
+
+const handleMessage = (message) => {
+  document.getElementById('errorMessage').textContent = message;
+  document.getElementById('domoMessage').classList.add('msg');
+  document.getElementById('domoMessage').classList.remove('err');
   document.getElementById('domoMessage').classList.remove('hidden');
 };
 
@@ -41,6 +50,7 @@ const hideError = () => {
 
 module.exports = {
   handleError,
+  handleMessage,
   sendPost,
   hideError,
 };
