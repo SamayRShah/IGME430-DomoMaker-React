@@ -1,4 +1,3 @@
-// DomoForm.js
 // eslint-disable-next-line import/no-extraneous-dependencies
 import React from 'react';
 import * as helper from '../helper.js';
@@ -7,7 +6,7 @@ const DomoForm = ({ triggerReload }) => {
   const handleSubmit = async (e) => {
     const printUpdate = (result) => {
       helper.handleMessage(`
-        Created: ${result.name} | ${result.age} | ${result.level}\n
+        Created: ${result.name} | ${result.age} | lvl. ${result.level}\n
         `);
     };
     e.preventDefault();
@@ -21,10 +20,14 @@ const DomoForm = ({ triggerReload }) => {
       return;
     }
 
-    await helper.sendPost(e.target.action, { name, age, level }, (result) => {
-      printUpdate(result);
-      triggerReload();
-    });
+    try {
+      await helper.sendPost(e.target.action, { name, age, level }, (result) => {
+        printUpdate(result);
+        triggerReload();
+      });
+    } catch (err) {
+      helper.handleError(`Error: ${err}`);
+    }
     e.target.blur();
     e.target.reset();
   };

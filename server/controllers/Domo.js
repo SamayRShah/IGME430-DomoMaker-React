@@ -23,7 +23,6 @@ const makeDomo = async (req, res) => {
       .status(201)
       .json({ name: newDomo.name, age: newDomo.age, level: newDomo.level });
   } catch (err) {
-    console.log(err);
     if (err.code === 11000) {
       return res.status(400).json({ error: 'Domo already exists' });
     }
@@ -87,7 +86,6 @@ const deleteDomo = async (req, res) => {
       res.status(403).json({ error: 'Not ur domo!' });
       return false;
     }
-    console.log(_id);
     const deletedDomo = await Domo.findOneAndDelete(
       { _id },
       { select: 'name age level' },
@@ -107,7 +105,6 @@ const getDomos = async (req, res) => {
       .exec();
     return res.json({ domos: docs });
   } catch (err) {
-    console.log(err);
     return res.status(500).json({ error: 'Error retrieving domos!' });
   }
 };

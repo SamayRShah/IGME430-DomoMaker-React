@@ -1,7 +1,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import React from 'react';
+import DomoItem from './DomoItem.jsx';
 
-const DomoList = ({ domos }) => {
+const DomoList = ({ domos, toggleEditMode, triggerReload }) => {
   if (domos.length === 0) {
     return (
       <div className="domoList">
@@ -13,17 +14,12 @@ const DomoList = ({ domos }) => {
   return (
     <div className="domoList">
       {domos.map((domo) => (
-        <div key={domo.id} className="domo">
-          <img
-            src="/assets/img/domoface.jpeg"
-            alt="domo face"
-            className="domoFace"
-          />
-          <h3 className="domoName">
-            Name: {domo.name} (lvl {domo.level})
-          </h3>
-          <h3 className="domoAge">Age: {domo.age}</h3>
-        </div>
+        <DomoItem
+          key={domo._id}
+          domo={domo}
+          toggleEditMode={toggleEditMode}
+          handleReload={triggerReload}
+        />
       ))}
     </div>
   );

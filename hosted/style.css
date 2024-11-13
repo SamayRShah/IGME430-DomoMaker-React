@@ -237,7 +237,6 @@ nav:nth-child(1) {
   flex-wrap: wrap;
   gap: 10px;
   padding: 10px;
-  overflow: hidden;
   min-height: auto;
 }
 
@@ -260,6 +259,9 @@ nav:nth-child(1) {
   border-color: rgba(255, 255, 255, 0.8);
   transition: background-color 2.6s ease-out;
   background-color: #66bfff;
+  transition: box-shadow 0.2s ease-out;
+  box-shadow: 0 0 30px 15px #00fbff90;
+  cursor: pointer;
 }
 
 img.domoFace {
