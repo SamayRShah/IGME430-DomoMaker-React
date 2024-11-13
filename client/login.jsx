@@ -79,7 +79,7 @@ const SignupWindow = () => (
       name="pass2"
       placeholder="re-type password"
     />
-    <input className="formSubmit" type="submit" value="Sign in" />
+    <input className="formSubmit" type="submit" value="Sign up" />
   </form>
 );
 
